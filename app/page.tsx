@@ -1,3 +1,5 @@
+"use client";  // Add this line at the very top
+
 import { useState } from "react";
 import VaultAnimation from "../components/VaultAnimation";
 import BitcoinConverter from "../components/BitcoinConverter";

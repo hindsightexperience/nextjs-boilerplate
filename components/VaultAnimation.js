@@ -1,3 +1,5 @@
+"use client";  // Add this line at the very top
+
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 

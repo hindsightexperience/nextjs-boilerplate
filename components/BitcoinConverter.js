@@ -1,3 +1,5 @@
+"use client";  // Add this line at the very top
+
 import React, { useState, useEffect } from "react";
 
 const BitcoinConverter = () => {
