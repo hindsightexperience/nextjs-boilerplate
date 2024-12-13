@@ -3,19 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: #f7931a; /* Bitcoin orange */
+  --color-secondary: #2c2c2c; /* Dark background */
+  --color-light: #ffffff; /* Text on dark background */
+  --color-accent: #ffcc00; /* Accent color */
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  font-family: var(--font-roboto);
+  margin: 0;
+  padding: 0;
 }
+
+h1, h2, h3 {
+  color: var(--color-primary);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
