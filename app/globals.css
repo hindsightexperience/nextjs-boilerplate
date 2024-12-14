@@ -7,18 +7,33 @@
   --color-secondary: #2c2c2c; /* Dark background */
   --color-light: #ffffff; /* Text on dark background */
   --color-accent: #ffcc00; /* Accent color */
+  --font-primary: 'Roboto', sans-serif; /* Primary font */
+  --font-mono: 'Roboto Mono', monospace; /* Mono font */
 }
 
 body {
   background-color: var(--color-secondary);
   color: var(--color-light);
-  font-family: var(--font-roboto);
+  font-family: var(--font-primary);
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
 h1, h2, h3 {
   color: var(--color-primary);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
 }
 
 a {
@@ -30,3 +45,94 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Vault knob */
+.vault-knob {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+  background-color: var(--color-light);
+  padding: 1rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+}
+
+.vault-knob:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+.inner-knob {
+  background-color: var(--color-primary);
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+}
+
+/* Retina Scan Animation */
+.retina-scan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.retina-scan h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.keypad-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.keypad-entry h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Buttons and Interactive Elements */
+button {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--color-accent);
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Make sure Lottie animations scale properly */
+.lottie-animation {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Update for page transitions */
+.page-transition {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.page-transition-enter {
+  opacity: 1;
+}
+
+.page-transition-leave {
+  opacity: 0;
+}

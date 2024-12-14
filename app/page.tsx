@@ -1,22 +1,24 @@
-"use client";  // Add this line at the very top
+"use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import VaultAnimation from "../components/VaultAnimation";
 import BitcoinConverter from "../components/BitcoinConverter";
+import { metadata } from "../layout.server";
 
-export default function Home() {
-  const [showMainContent, setShowMainContent] = useState(false);
+export default function HomePage() {
+  const [unlocked, setUnlocked] = useState(false);
+
+  const handleUnlock = () => {
+    setUnlocked(true);
+  };
 
   return (
-    <main>
-      {!showMainContent ? (
-        <VaultAnimation onAnimationEnd={() => setShowMainContent(true)} />
+    <div>
+      {!unlocked ? (
+        <VaultAnimation onComplete={handleUnlock} />
       ) : (
-        <div className="p-8">
-          <h1 className="text-3xl font-bold mb-4">Bitcoin Vault App</h1>
-          <BitcoinConverter />
-        </div>
+        <BitcoinConverter />
       )}
-    </main>
+    </div>
   );
 }

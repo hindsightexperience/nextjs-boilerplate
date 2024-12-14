@@ -1,47 +1,81 @@
-"use client";  // Add this line at the very top
+"use client"; // Required for React hooks
 
-import React, { useEffect } from "react";
-import { gsap } from "gsap";
-
-const VaultAnimation = ({ onAnimationEnd }) => {
-  useEffect(() => {
-    const tl = gsap.timeline();
-    tl.to(".vault-door", { rotationY: 180, duration: 2, ease: "power2.inOut" })
-      .to(".vault-content", { opacity: 1, duration: 1 }, "-=1")
-      .eventCallback("onComplete", onAnimationEnd);
-  }, [onAnimationEnd]);
-
-  return (
-    <div className="vault">
-      <div className="vault-door"></div>
-      <div className="vault-content">
-        <h1>Welcome to Bitcoin Vault</h1>
-      </div>
-      <style jsx>{`
-        .vault {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          height: 100vh;
-          background: #121212;
-          color: #f0a500;
-        }
-        .vault-door {
-          width: 200px;
-          height: 200px;
-          background: #f0a500;
-          border-radius: 50%;
-          transform-origin: center;
-          transform: perspective(400px) rotateY(0deg);
-        }
-        .vault-content {
-          opacity: 0;
-          margin-top: 20px;
-        }
-      `}</style>
-    </div>
-  );
-};
-
-export default VaultAnimation;
+ import React, { useState, useEffect } from "react";
+ import { gsap } from "gsap";
+ import Lottie from "react-lottie-player";
+ import retinaScanAnimation from "../animations/retina-scan.json";
+ import keypadAnimation from "../animations/keypad.json";
+ 
+ const VaultAnimation = ({ onComplete }) => {
+   const [stage, setStage] = useState(1);
+ 
+   useEffect(() => {
+     // Example: Add debug logs for multiple renders
+     console.log("VaultAnimation component rendered or updated");
+   }, []);
+ 
+   const handleKnobTurn = () => {
+     const knob = document.querySelector(".vault-knob");
+     gsap.to(knob, {
+       rotation: 360,
+       duration: 2,
+       ease: "power2.out",
+       onComplete: () => onComplete(),
+     });
+   };
+ 
+   return (
+     <div className="vault-animation-container flex flex-col items-center justify-center h-screen bg-black text-white">
+       {stage === 1 && (
+         <div className="retina-scan">
+           <h2 className="text-xl mb-4">Perform Retina Scan</h2>
+           <Lottie
+             loop={false} // Ensure animation runs only once
+             animationData={retinaScanAnimation}
+             play
+             className="w-64 h-64"
+           />
+           <button
+             onClick={() => setStage(2)}
+             className="mt-4 p-2 bg-orange-500 rounded text-white hover:bg-orange-600"
+           >
+             Continue
+           </button>
+         </div>
+       )}
+ 
+       {stage === 2 && (
+         <div className="keypad-entry">
+           <h2 className="text-xl mb-4">Almost There ₿⚛️</h2>
+           <Lottie
+             loop={false} // Ensure animation runs only once
+             animationData={keypadAnimation}
+             play
+             className="w-64 h-64"
+           />
+           <button
+             onClick={() => setStage(3)}
+             className="mt-4 p-2 bg-orange-500 rounded text-white hover:bg-orange-600"
+           >
+             Unlock Vault
+           </button>
+         </div>
+       )}
+ 
+       {stage === 3 && (
+         <div className="vault-knob-section flex flex-col items-center">
+           <h2 className="text-xl mb-4">Turn the Vault Knob</h2>
+           <div
+             className="vault-knob w-32 h-32 rounded-full bg-gray-700 border-4 border-orange-500 flex items-center justify-center cursor-pointer"
+             onClick={handleKnobTurn}
+           >
+             <div className="inner-knob w-12 h-12 bg-orange-500 rounded-full"></div>
+           </div>
+         </div>
+       )}
+     </div>
+   );
+ };
+ 
+ export default VaultAnimation;
+          
