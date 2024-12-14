@@ -1,29 +1,27 @@
-"use client"; // This marks this file as a client-side component
+"use client";
 
-//import type { Metadata } from "next";
 import "./globals.css";
 import React, { useState } from "react";
 import VaultAnimation from "../components/VaultAnimation";
-import { ReactNode } from "react";  // Import ReactNode
+import { ReactNode } from "react";
 
 import { Roboto, Roboto_Mono } from "next/font/google";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
-  weight: ["400", "700"], // Optional: Specify weights
+  weight: ["400", "700"],
 });
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
-  weight: ["400", "700"], // Optional: Specify weights
+  weight: ["400", "700"],
 });
 
-
-// Client-side component should have the `use client` directive
 interface RootLayoutProps {
-  children: ReactNode; // Explicitly type children as ReactNode
+  children: ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -43,4 +41,3 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
-

@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import VaultAnimation from "../components/VaultAnimation";
 import BitcoinConverter from "../components/BitcoinConverter";
-import { metadata } from "../layout.server";
 
 export default function HomePage() {
   const [unlocked, setUnlocked] = useState(false);
