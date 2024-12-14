@@ -20,12 +20,7 @@ const robotoMono = Roboto_Mono({
   weight: ["400", "700"], // Optional: Specify weights
 });
 
-// Server-side metadata (do not include `use client` here)
-/*export const metadata: Metadata = {
-  title: "Bitcoin Vault App",
-  description: "A sleek and secure app for Bitcoin enthusiasts.",
-};
-*/
+
 // Client-side component should have the `use client` directive
 interface RootLayoutProps {
   children: ReactNode; // Explicitly type children as ReactNode
@@ -36,7 +31,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
-      <body className="bg-black text-white">
+      <body
+        className={`${roboto.variable} ${robotoMono.variable} bg-black text-white`}
+      >
         {!animationComplete ? (
           <VaultAnimation onComplete={() => setAnimationComplete(true)} />
         ) : (
@@ -46,3 +43,4 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
+
