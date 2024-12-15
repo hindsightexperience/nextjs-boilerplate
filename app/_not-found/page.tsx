@@ -1,4 +1,7 @@
 "use client";
+
+export const dynamic = "force-dynamic";
+
 export default function BrowserOnlyNotFoundPage() {
   return (
     <div>
@@ -8,4 +11,6 @@ export default function BrowserOnlyNotFoundPage() {
   );
 }
 
-console.log("Is this running in the browser?", typeof document !== "undefined");
+if (typeof document !== "undefined") {
+  console.log("Is this running in the browser?", true);
+}
