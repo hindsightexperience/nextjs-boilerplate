@@ -1,4 +1,4 @@
-"use client"; // Ensure this file only runs client-side
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { gsap } from "gsap";
@@ -9,22 +9,15 @@ import keypadAnimation from "../animations/keypad.json";
 const VaultAnimation = ({ onComplete }) => {
   const [stage, setStage] = useState(1);
 
-  useEffect(() => {
-    console.log("VaultAnimation component mounted");
-  }, []);
-
   const handleKnobTurn = () => {
-    // Ensure DOM is only accessed in the browser
-    if (typeof window !== "undefined") {
+    if (typeof document !== "undefined") {
       const knob = document.querySelector(".vault-knob");
-      if (knob) {
-        gsap.to(knob, {
-          rotation: 360,
-          duration: 2,
-          ease: "power2.out",
-          onComplete: () => onComplete(),
-        });
-      }
+      gsap.to(knob, {
+        rotation: 360,
+        duration: 2,
+        ease: "power2.out",
+        onComplete: () => onComplete(),
+      });
     }
   };
 
