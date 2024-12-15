@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+"use client";
 
-export default function NotFoundPage() {
-  const [hasMounted, setHasMounted] = useState(false);
+import dynamic from "next/dynamic";
 
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  if (!hasMounted) {
-    return null; // Avoid rendering until mounted
+export default function BrowserOnlyNotFoundPage() {
+    return (
+      <div>
+        <h1>404 - Page Not Found</h1>
+        <p>This page does not exist.</p>
+      </div>
+    );
   }
-
-  return (
-    <div>
-      <h1>404 - Page Not Found</h1>
-      <p>The page you’re looking for doesn’t exist.</p>
-    </div>
-  );
-}
+  
+  console.log("Is this running in the browser?", typeof document !== "undefined");
